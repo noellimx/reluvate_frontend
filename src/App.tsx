@@ -2,23 +2,26 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+
+
+const Page_Authenticated = () => {
+
+  return <>Authenticated</>
+}
+const Page_Login = () => {
+  return <>Login</>
+}
+const App = () => {
+
+
+  const [token , setToken] = React.useState<string | null>(null) 
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {token == null ? <Page_Login /> : <Page_Authenticated />}
     </div>
   );
 }
