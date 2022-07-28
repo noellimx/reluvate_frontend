@@ -2,7 +2,7 @@ declare module "reluvate" {
   export type Token = string | null;
 
   export interface Pokemon {
-    id: string;
+    id: number;
     pokename: string;
     trainer: string | null;
   }

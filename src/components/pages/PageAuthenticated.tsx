@@ -53,7 +53,11 @@ const PanesAuthenticated = ({
       </div>
       <div className="app-body-content">
         {paneSelection === PaneOptions.myPokemon && (
-          <PaneMyPokemon pokemonInventory={pokemonInventory} />
+          <PaneMyPokemon
+            setPokemonInventory={setPokemonInventory}
+            pokemonInventory={pokemonInventory}
+            token={token}
+          />
         )}
         {paneSelection === PaneOptions.pokedex && <div>Pokedex</div>}
         {paneSelection === PaneOptions.guessThatPokemon && (

@@ -10,6 +10,7 @@ interface Config {
     howManyTriesAlready: string;
     guess: string;
     ownedPokemons: string;
+    release: string;
   };
 }
 
@@ -22,6 +23,7 @@ const config: Config = (() => {
     howManyTriesAlready: `${_config.serverUrl}/pokemon/how-many-tries-already`,
     guess: `${_config.serverUrl}/pokemon/guess/`,
     ownedPokemons: `${_config.serverUrl}/pokemon/owned-pokemon`,
+    release: `${_config.serverUrl}/pokemon/remove-pokemon/`,
   };
 
   return _config;

@@ -151,7 +151,6 @@
 }
 
 .my-poke-card-text {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,11 +158,11 @@
   width: 100%;
 }
 
-.my-poke-card-text-id{
+.my-poke-card-text-id {
   color: white;
   background-color: black;
 }
-.my-poke-card-text-pokename{
+.my-poke-card-text-pokename {
   background-color: yellow;
 }
 
@@ -177,52 +176,53 @@
   height: 100%;
   flex-direction: column;
 }
-.line-spacing-10{
-
+.line-spacing-10 {
   display: flex;
   height: 10px;
 }
 
-.guess-field{
-
+.guess-field {
   width: 60px;
 }
 
-
-.pane-guess-that-pokemon-form{
+.pane-guess-that-pokemon-form {
   display: flex;
   width: fit-content;
 }
 
-.pane-description-guess{
-
+.pane-description-guess {
   font-style: italic;
   font-weight: bold;
 }
-.pane-guess-that-pokemon{
-
-
+.pane-guess-that-pokemon {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.pane-guess-reward-notification-text{
+.pane-guess-reward-notification-text {
   color: green;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .pane-guess-reward-notification {
-    margin-top: 10px;
-    animation: fade 2s linear;
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
+  margin-top: 10px;
+  animation: fade 2s linear;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fade {
-  0% { opacity: 1 }
-  100% { opacity: 0 }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
+.my-poke-card-release {
+  color: red;
+}

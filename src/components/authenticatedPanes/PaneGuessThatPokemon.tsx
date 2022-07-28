@@ -91,7 +91,9 @@ const PaneGuessThatPokemon = ({
   };
   return (
     <div className="pane-guess-that-pokemon">
-      <div className="pane-description pane-description-guess">Guess That Pokemon</div>
+      <div className="pane-description pane-description-guess">
+        Guess That Pokemon
+      </div>
       <div>
         {" "}
         You've tried {tried} times. Guessing wrong for consecutively 3 times
@@ -100,30 +102,33 @@ const PaneGuessThatPokemon = ({
 
       <div className="line-spacing-10"></div>
       <div className="pane-guess-that-pokemon-form">
-
-      <TextField
-        id="outlined-number"
-        className="guess-field"
-        type="number"
-        size="small"
-        value={guessValue}
-        onChange={(event) => setGuessValue(Number(event.target.value))}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <Button
-        onClick={() => {
-          submitGuess(guessValue);
-        }}
-        value={"GUESS"}
-      >GUESS</Button>
+        <TextField
+          id="outlined-number"
+          className="guess-field"
+          type="number"
+          size="small"
+          value={guessValue}
+          onChange={(event) => setGuessValue(Number(event.target.value))}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Button
+          onClick={() => {
+            submitGuess(guessValue);
+          }}
+          value={"GUESS"}
+        >
+          GUESS
+        </Button>
       </div>
       {rewards.map((reward) => (
         <div key={reward.id} className="pane-guess-reward-notification">
-          <div className={"pane-guess-reward-notification-text"}>You win a pokemon!!</div>
+          <div className={"pane-guess-reward-notification-text"}>
+            You win a pokemon!!
+          </div>
 
-          <PokemonCard pokemon={reward}/>
+          <PokemonCard pokemon={reward} />
         </div>
       ))}
 
