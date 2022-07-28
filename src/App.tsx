@@ -5,7 +5,7 @@ import { Token } from "reluvate";
 
 import { Button, TextField } from "@mui/material";
 
-import SETTINGS from "./config";
+import config from "./config";
 
 import axios from "axios";
 
@@ -13,13 +13,8 @@ import qs from "qs";
 
 import PageAuthenticated from "./components/pages/PageAuthenticated";
 
-const { serverUrl } = SETTINGS;
+const { paths } = config;
 
-const paths = {
-  login: `${serverUrl}/auth/token/login`,
-};
-
-console.log(paths);
 const PageLogin = ({
   setToken,
 }: {
@@ -71,14 +66,13 @@ const PageLogin = ({
 
               console.log("_response");
               console.log(_response);
-              console.log(_response.data?.auth_token);
+              console.log(_response.data?.access);
 
-              const auth_token = _response.data?.auth_token;
+              const auth_token = _response.data?.access;
 
               auth_token && setToken(auth_token);
-
-              throw new Error(_response.data);
             } catch (err) {
+              console.log(err);
               setDescription(
                 `Some error occurred: ${err}. You may attempt again.`
               );
@@ -104,7 +98,7 @@ const App = () => {
       {token == null ? (
         <PageLogin setToken={setToken} />
       ) : (
-        <PageAuthenticated />
+        <PageAuthenticated token={token} />
       )}
     </div>
   );

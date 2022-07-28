@@ -3,8 +3,25 @@ const server = {
   port: "8000",
 };
 
-const SETTINGS = {
-  serverUrl: `http://${server.address}:${server.port}`,
-};
+interface Config {
+  serverUrl?: string;
+  paths: {
+    login: string;
+    howManyTriesAlready: string;
+    guess: string;
+  };
+}
 
-export default SETTINGS;
+const config: Config = (() => {
+  const _config: any = {};
+
+  _config.serverUrl = `http://${server.address}:${server.port}`;
+  _config.paths = {
+    login: `${_config.serverUrl}/api/token/`,
+    howManyTriesAlready: `${_config.serverUrl}/pokemon/how-many-tries-already`,
+    guess: `${_config.serverUrl}/pokemon/guess/`,
+  };
+
+  return _config;
+})();
+export default config;
