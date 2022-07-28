@@ -12,6 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { PaneOptions } from "./pages/PageAuthenticated";
 
+import { Button } from "@mui/material";
+
 const ResponsiveAppBar = ({
   paneOptions,
   setPaneSelection,
@@ -27,15 +29,17 @@ const ResponsiveAppBar = ({
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (event: React.BaseSyntheticEvent) => {
-    console.log("[handleCloseNavMenu]");
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleClickPaneOption = (pane: PaneOptions | null) => {
+  const handleClickPaneOption = (
+    pane: PaneOptions | null,
+    handleCollapseEle: () => void
+  ) => {
     return (event: React.BaseSyntheticEvent) => {
       setPaneSelection(pane);
-      handleCloseNavMenu(event);
+      handleCollapseEle();
     };
   };
   const handleMenuItemChange = (event: any) => {
@@ -53,6 +57,7 @@ const ResponsiveAppBar = ({
             variant="h6"
             noWrap
             component="a"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -101,13 +106,14 @@ const ResponsiveAppBar = ({
                   <MenuItem
                     key={pane}
                     value={pane}
-                    onClick={handleClickPaneOption(pane)}
+                    onClick={handleClickPaneOption(pane, handleCloseNavMenu)}
                   >
                     <Typography textAlign="center">{pane}</Typography>
                   </MenuItem>
                 ))}
             </Menu>
           </Box>
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -126,6 +132,18 @@ const ResponsiveAppBar = ({
           >
             GOTTA CATCH 'EM ALL
           </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {paneOptions !== null &&
+              paneOptions.map((pane) => (
+                <Button
+                  key={pane}
+                  onClick={handleClickPaneOption(pane, handleCloseNavMenu)}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {pane}
+                </Button>
+              ))}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

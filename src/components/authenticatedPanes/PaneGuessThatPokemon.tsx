@@ -6,7 +6,7 @@ import config from "../../config";
 
 import { Pokemon } from "reluvate";
 
-import {parsePokemonFromAPI} from "../../utils/serializers"
+import { parsePokemonFromAPI } from "../../utils/serializers";
 const PaneGuessThatPokemon = ({
   tried,
   setTried,

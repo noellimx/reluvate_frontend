@@ -1,4 +1,3 @@
-
 import { Pokemon } from "reluvate";
 
 export const parsePokemonFromAPI: (_pokemon: string) => Pokemon | null = (
@@ -15,6 +14,3 @@ export const parsePokemonFromAPI: (_pokemon: string) => Pokemon | null = (
     trainer: pokemon.trainer?.username,
   };
 };
-
-
-
