@@ -2,6 +2,7 @@ import * as React from "react";
 import ResponsiveAppBar from "../ResponsiveAppBar";
 
 import PaneGuessThatPokemon from "../authenticatedPanes/PaneGuessThatPokemon";
+import PaneMyPokemon from "../authenticatedPanes/PaneMyPokemon/PaneMyPokemon";
 
 import axios from "axios";
 
@@ -44,34 +45,31 @@ const PanesAuthenticated = ({
 }) => {
   return (
     <>
-      <div>
+      <div className="app-responsive-bar">
         <ResponsiveAppBar
           paneOptions={paneOptions}
           setPaneSelection={setPaneSelection}
         />
       </div>
-
-      {paneSelection === PaneOptions.myPokemon && (
-        <div>
-          {pokemonInventory.map((p) => (
-            <div>{p.id}</div>
-          ))}
-        </div>
-      )}
-      {paneSelection === PaneOptions.pokedex && <div>Pokedex</div>}
-      {paneSelection === PaneOptions.guessThatPokemon && (
-        <PaneGuessThatPokemon
-          prize={prize}
-          setPrize={setPrize}
-          setTried={setTried}
-          token={token}
-          tried={tried}
-          setPokemonInventory={setPokemonInventory}
-        />
-      )}
-      {paneSelection === null && (
-        <div>Please select pane in navigation bar.</div>
-      )}
+      <div className="app-body-content">
+        {paneSelection === PaneOptions.myPokemon && (
+          <PaneMyPokemon pokemonInventory={pokemonInventory} />
+        )}
+        {paneSelection === PaneOptions.pokedex && <div>Pokedex</div>}
+        {paneSelection === PaneOptions.guessThatPokemon && (
+          <PaneGuessThatPokemon
+            prize={prize}
+            setPrize={setPrize}
+            setTried={setTried}
+            token={token}
+            tried={tried}
+            setPokemonInventory={setPokemonInventory}
+          />
+        )}
+        {paneSelection === null && (
+          <div>Please select pane in navigation bar.</div>
+        )}
+      </div>
     </>
   );
 };

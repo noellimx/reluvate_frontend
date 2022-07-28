@@ -1,13 +1,14 @@
 .App {
-  text-align: center;
-    height: 100vh;
-    display:flex;
+  height: fit-content;
+  width: 100vw;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
-    justify-content: center;
-    align-items: center;
+  overflow: hidden;
 }
-
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -39,13 +40,14 @@
   }
 }
 
-
 .page-login {
   display: flex;
 
+  height: 100vh;
+  align-items: center;
 }
 
-.login-form-fields{
+.login-form-fields {
   display: flex;
   margin-top: 5px;
   justify-content: center;
@@ -62,7 +64,6 @@
   justify-content: center;
 }
 
-
 .footer {
   display: flex;
   position: fixed;
@@ -70,28 +71,24 @@
   justify-content: right;
   bottom: 0;
   padding-bottom: 5px;
-
 }
 
-.footer-github-link{
+.footer-github-link {
   display: flex;
   align-items: center;
   text-align: center;
   vertical-align: center;
   padding-right: 5px;
-
-
 }
 
 .footer-github-link-description {
   margin-left: 5px;
-  
+
   display: flex;
   align-items: center;
   vertical-align: center;
   font-size: small;
 }
-
 
 .footer-demo-account {
   font-size: small;
@@ -99,4 +96,107 @@
   align-items: center;
   justify-content: center;
   padding-right: 10px;
+}
+.pane-authenticated-app-bar {
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+}
+
+.pane-authenticated-selection {
+  display: flex;
+  margin-top: 200px;
+  top: 100px;
+}
+
+.pane-my-pokemon {
+  border: 1px solid black;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  background-color: pink;
+  grid-template-rows: 1fr min-content;
+  justify-content: center;
+  overflow: scroll;
+  flex-direction: column;
+}
+
+.pane-description {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-poke-cards {
+  top: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.my-poke-card {
+  display: flex;
+  min-height: auto;
+  margin-top: 15px;
+  width: 170px;
+  height: 200px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.my-poke-card-text {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 10px 0;
+  width: 100%;
+}
+
+.my-poke-card-text-id{
+  color: white;
+  background-color: black;
+}
+.my-poke-card-text-pokename{
+  background-color: yellow;
+}
+
+.app-responsive-bar {
+  display: flex;
+  height: fit-content;
+}
+
+.app-body-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.line-spacing-10{
+
+  display: flex;
+  height: 10px;
+}
+
+.guess-field{
+
+  width: 60px;
+}
+
+
+.pane-guess-that-pokemon-form{
+  display: flex;
+  width: fit-content;
+}
+.pane-guess-that-pokemon{
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

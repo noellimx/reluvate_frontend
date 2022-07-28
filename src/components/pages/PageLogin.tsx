@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 
 import { Token } from "reluvate";
@@ -13,23 +10,22 @@ import axios from "axios";
 
 import qs from "qs";
 
-
 const { paths } = config;
 const PageLogin = ({
-    setToken,
-  }: {
-    setToken: React.Dispatch<React.SetStateAction<Token>>;
-  }) => {
-    const [username, setUsername] = React.useState<string>("");
-    const [password, setPassword] = React.useState<string>("");
-  
-    const [errorDescription, setErrorDescription] = React.useState<string>("");
-    return (
-      <div className="page-login">
-        <div className="login-form">
-        <div>
-          <header className="login-form-header">Enter your credentials</header>
-          <div className="login-form-fields"><TextField
+  setToken,
+}: {
+  setToken: React.Dispatch<React.SetStateAction<Token>>;
+}) => {
+  const [username, setUsername] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+
+  const [errorDescription, setErrorDescription] = React.useState<string>("");
+  return (
+    <div className="page-login">
+      <div className="login-form">
+        <header className="login-form-header">Enter your credentials</header>
+        <div className="login-form-fields">
+          <TextField
             id="outlined-basic"
             label="username"
             value={username}
@@ -37,7 +33,7 @@ const PageLogin = ({
               setUsername(event.target.value);
             }}
             variant="outlined"
-            size="small" 
+            size="small"
           />
           <TextField
             id="outlined-basic"
@@ -48,14 +44,10 @@ const PageLogin = ({
             }}
             variant="outlined"
             type="password"
-             size="small" 
-          /></div>
-          <div 
-          className="login-form-submit"
-
-          >
-
-
+            size="small"
+          />
+        </div>
+        <div className="login-form-submit">
           <Button
             variant="outlined"
             onClick={async () => {
@@ -72,13 +64,9 @@ const PageLogin = ({
                     },
                   }
                 );
-  
-                console.log("_response");
-                console.log(_response);
-                console.log(_response.data?.access);
-  
+
                 const auth_token = _response.data?.access;
-  
+
                 auth_token && setToken(auth_token);
               } catch (err) {
                 console.log(err);
@@ -91,16 +79,14 @@ const PageLogin = ({
           >
             Login
           </Button>
-          </div>
         </div>
-  
+
         <div>
           <div className="login-form-error">{errorDescription}</div>
         </div>
-        </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-
-  export default PageLogin
+export default PageLogin;

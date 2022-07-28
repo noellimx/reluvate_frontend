@@ -88,16 +88,20 @@ const PaneGuessThatPokemon = ({
     setTried((_) => tried);
   };
   return (
-    <>
-      <div>Guess That Pokemon</div>
+    <div className="pane-guess-that-pokemon">
+      <div className="pane-description">Guess That Pokemon</div>
       <div>
         {" "}
-        You've tried {tried} times. Guessing wrong for consecutively 3 times will refresh a
-        new wild pokemon.
+        You've tried {tried} times. Guessing wrong for consecutively 3 times
+        will refresh a new wild pokemon.
       </div>
+
+      <div className="line-spacing-10"></div>
+      <div className="pane-guess-that-pokemon-form">
+
       <TextField
         id="outlined-number"
-        label="Number"
+        className="guess-field"
         type="number"
         size="small"
         value={guessValue}
@@ -110,7 +114,9 @@ const PaneGuessThatPokemon = ({
         onClick={() => {
           submitGuess(guessValue);
         }}
-      ></Button>
+        value={"GUESS"}
+      >GUESS</Button>
+      </div>
       {rewards.map((reward) => (
         <div>
           {" "}
@@ -121,7 +127,7 @@ const PaneGuessThatPokemon = ({
       ))}
 
       {prize && <div>Your next prize is {prize.pokename}</div>}
-    </>
+    </div>
   );
 };
 
