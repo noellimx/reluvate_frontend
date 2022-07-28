@@ -25,7 +25,7 @@ const App = () => {
         <PageAuthenticated token={token} />
       )}
 
-      <div className="footer"><div className="footer-demo-account">Demo Account: user | 12345</div><GithubLinks description={"Backend"} link={"https://github.com/noellimx/reluvate_backend"}/><GithubLinks description={"Frontend"} link={"/"}/></div>
+      <div className="footer"><div className="footer-demo-account">Demo Account: user | 12345</div><GithubLinks description={"Backend"} link={"https://github.com/noellimx/reluvate_backend"}/><GithubLinks description={"Frontend"} link={"https://github.com/noellimx/reluvate_frontend"}/></div>
     </div>
   );
 };

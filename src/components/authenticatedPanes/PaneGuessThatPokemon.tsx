@@ -92,13 +92,14 @@ const PaneGuessThatPokemon = ({
       <div>Guess That Pokemon</div>
       <div>
         {" "}
-        You've tried {tried} times. Guessing wrong from 3 times will refresh a
+        You've tried {tried} times. Guessing wrong for consecutively 3 times will refresh a
         new wild pokemon.
       </div>
       <TextField
         id="outlined-number"
         label="Number"
         type="number"
+        size="small"
         value={guessValue}
         onChange={(event) => setGuessValue(Number(event.target.value))}
         InputLabelProps={{
