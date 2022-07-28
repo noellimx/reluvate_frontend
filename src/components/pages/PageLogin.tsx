@@ -2,7 +2,6 @@
 
 
 import React from "react";
-import "./App.css";
 
 import { Token } from "reluvate";
 
@@ -24,12 +23,13 @@ const PageLogin = ({
     const [username, setUsername] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
   
-    const [description, setDescription] = React.useState<string>("");
+    const [errorDescription, setErrorDescription] = React.useState<string>("");
     return (
-      <>
+      <div className="page-login">
+        <div className="login-form">
         <div>
-          <header>Enter your credentials</header>
-          <TextField
+          <header className="login-form-header">Enter your credentials</header>
+          <div className="login-form-fields"><TextField
             id="outlined-basic"
             label="username"
             value={username}
@@ -37,6 +37,7 @@ const PageLogin = ({
               setUsername(event.target.value);
             }}
             variant="outlined"
+            size="small" 
           />
           <TextField
             id="outlined-basic"
@@ -47,7 +48,14 @@ const PageLogin = ({
             }}
             variant="outlined"
             type="password"
-          />
+             size="small" 
+          /></div>
+          <div 
+          className="login-form-submit"
+
+          >
+
+
           <Button
             variant="outlined"
             onClick={async () => {
@@ -74,7 +82,7 @@ const PageLogin = ({
                 auth_token && setToken(auth_token);
               } catch (err) {
                 console.log(err);
-                setDescription(
+                setErrorDescription(
                   `Some error occurred: ${err}. You may attempt again.`
                 );
               }
@@ -83,12 +91,14 @@ const PageLogin = ({
           >
             Login
           </Button>
+          </div>
         </div>
   
         <div>
-          <div>{description}</div>
+          <div className="login-form-error">{errorDescription}</div>
         </div>
-      </>
+        </div>
+      </div>
     );
   };
 
