@@ -1,4 +1,3 @@
-declare module 'reluvate' {
-
-    export type Token = string | null
+declare module "reluvate" {
+  export type Token = string | null;
 }

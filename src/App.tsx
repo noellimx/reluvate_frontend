@@ -11,11 +11,9 @@ import axios from "axios";
 
 import qs from "qs";
 
-const { serverUrl } = SETTINGS;
+import PageAuthenticated from "./components/pages/PageAuthenticated";
 
-const PageAuthenticated = () => {
-  return <>Authenticated</>;
-};
+const { serverUrl } = SETTINGS;
 
 const paths = {
   login: `${serverUrl}/auth/token/login`,
