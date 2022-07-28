@@ -122,6 +122,10 @@ const PaneGuessThatPokemon = ({
           GUESS
         </Button>
       </div>
+      {prize && <div>Your next prize is {prize.pokename}</div>}
+
+      <div  className="pane-guess-reward-notifications">
+
       {rewards.map((reward) => (
         <div key={reward.id} className="pane-guess-reward-notification">
           <div className={"pane-guess-reward-notification-text"}>
@@ -132,7 +136,9 @@ const PaneGuessThatPokemon = ({
         </div>
       ))}
 
-      {prize && <div>Your next prize is {prize.pokename}</div>}
+
+      </div>
+
     </div>
   );
 };

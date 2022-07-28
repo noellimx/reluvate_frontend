@@ -11,6 +11,7 @@ interface Config {
     guess: string;
     ownedPokemons: string;
     release: string;
+    unownedPokedex: string;
   };
 }
 
@@ -24,6 +25,7 @@ const config: Config = (() => {
     guess: `${_config.serverUrl}/pokemon/guess/`,
     ownedPokemons: `${_config.serverUrl}/pokemon/owned-pokemon`,
     release: `${_config.serverUrl}/pokemon/remove-pokemon/`,
+    unownedPokedex: `${_config.serverUrl}/pokemon/unowned-pokedex`,
   };
 
   return _config;

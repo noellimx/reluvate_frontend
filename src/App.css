@@ -189,7 +189,15 @@
   display: flex;
   width: fit-content;
 }
+.pane-description-pokedex{
+  font-style: italic;
+  font-weight: bold;
 
+}
+.unowned-pokedex-item{
+  display:flex;
+  flex-direction: column;
+}
 .pane-description-guess {
   font-style: italic;
   font-weight: bold;
@@ -208,7 +216,7 @@
 }
 .pane-guess-reward-notification {
   margin-top: 10px;
-  animation: fade 2s linear;
+  animation: fade 6s linear;
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -225,4 +233,9 @@
 
 .my-poke-card-release {
   color: red;
+}
+
+
+.pane-guess-reward-notifications {
+  display: flex;
 }

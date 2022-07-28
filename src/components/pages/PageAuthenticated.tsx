@@ -3,6 +3,7 @@ import ResponsiveAppBar from "../ResponsiveAppBar";
 
 import PaneGuessThatPokemon from "../authenticatedPanes/PaneGuessThatPokemon";
 import PaneMyPokemon from "../authenticatedPanes/PaneMyPokemon/PaneMyPokemon";
+import PanePokedex from "../authenticatedPanes/PanePokedex";
 
 import axios from "axios";
 
@@ -59,7 +60,9 @@ const PanesAuthenticated = ({
             token={token}
           />
         )}
-        {paneSelection === PaneOptions.pokedex && <div>Pokedex</div>}
+        {paneSelection === PaneOptions.pokedex && (
+          <PanePokedex pokemonInventory={pokemonInventory} token={token} />
+        )}
         {paneSelection === PaneOptions.guessThatPokemon && (
           <PaneGuessThatPokemon
             prize={prize}
