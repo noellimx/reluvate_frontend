@@ -7,6 +7,8 @@ import axios from "axios";
 
 import config from "../../config";
 
+import { Pokemon } from "reluvate";
+
 export enum PaneOptions {
   myPokemon = "My Pokemons",
   pokedex = "pokedex",
@@ -20,8 +22,12 @@ const PanesAuthenticated = ({
   paneSelection,
   tried,
   setTried,
+  prize,
+  setPrize,
   token,
 }: {
+  prize: Pokemon | null;
+  setPrize: React.Dispatch<React.SetStateAction<Pokemon | null>>;
   tried: number | null;
   token: string | null;
   setPaneSelection: React.Dispatch<React.SetStateAction<PaneOptions | null>>;
@@ -39,7 +45,13 @@ const PanesAuthenticated = ({
       {paneSelection === PaneOptions.myPokemon && <div>My Pokemons</div>}
       {paneSelection === PaneOptions.pokedex && <div>Pokedex</div>}
       {paneSelection === PaneOptions.guessThatPokemon && (
-        <PaneGuessThatPokemon setTried={setTried} token={token} tried={tried} />
+        <PaneGuessThatPokemon
+          prize={prize}
+          setPrize={setPrize}
+          setTried={setTried}
+          token={token}
+          tried={tried}
+        />
       )}
       {paneSelection === null && (
         <div>Please select pane in navigation bar.</div>
@@ -55,7 +67,7 @@ const PageAuthenticated = ({ token }: { token: string | null }) => {
 
   const [tried, setTried] = React.useState<number | null>(null);
 
-  const [prize, setPrize] = React.useState<string | null>(null);
+  const [prize, setPrize] = React.useState<Pokemon | null>(null);
 
   React.useEffect(() => {
     (async () => {
@@ -78,6 +90,8 @@ const PageAuthenticated = ({ token }: { token: string | null }) => {
 
   return (
     <PanesAuthenticated
+      prize={prize}
+      setPrize={setPrize}
       setTried={setTried}
       tried={tried}
       token={token}
