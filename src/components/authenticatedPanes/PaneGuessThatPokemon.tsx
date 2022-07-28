@@ -6,15 +6,17 @@ import config from "../../config";
 
 import { Pokemon } from "reluvate";
 
-import { parsePokemonFromAPI } from "../../utils/serializers";
+import { parsePokemonFromAPIString } from "../../utils/serializers";
 const PaneGuessThatPokemon = ({
   tried,
   setTried,
   token,
-
+  setPokemonInventory,
   prize,
   setPrize,
 }: {
+  setPokemonInventory: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+
   token: string | null;
   setTried: React.Dispatch<React.SetStateAction<number | null>>;
   tried: number | null;
@@ -53,14 +55,16 @@ const PaneGuessThatPokemon = ({
     const reply = responseJSON.reply;
 
     if (reply === "hit") {
-      const reward: Pokemon | null = parsePokemonFromAPI(
+      const reward: Pokemon | null = parsePokemonFromAPIString(
         responseJSON.prize_rewarded
       );
 
       if (reward !== null) {
+        setPokemonInventory((prev) => [...prev, reward]);
         setRewards((rewards) => {
           return [...rewards, reward];
         });
+
         setTimeout(() => {
           setRewards((prev_rewards) => {
             const next = prev_rewards.filter(
@@ -72,7 +76,9 @@ const PaneGuessThatPokemon = ({
       }
     }
 
-    const prize: Pokemon | null = parsePokemonFromAPI(responseJSON.prize_next);
+    const prize: Pokemon | null = parsePokemonFromAPIString(
+      responseJSON.prize_next
+    );
     console.log(prize);
     console.log("prize");
     if (prize !== null) {

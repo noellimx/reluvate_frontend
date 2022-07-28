@@ -9,6 +9,7 @@ interface Config {
     login: string;
     howManyTriesAlready: string;
     guess: string;
+    ownedPokemons: string;
   };
 }
 
@@ -20,6 +21,7 @@ const config: Config = (() => {
     login: `${_config.serverUrl}/api/token/`,
     howManyTriesAlready: `${_config.serverUrl}/pokemon/how-many-tries-already`,
     guess: `${_config.serverUrl}/pokemon/guess/`,
+    ownedPokemons: `${_config.serverUrl}/pokemon/owned-pokemon`,
   };
 
   return _config;

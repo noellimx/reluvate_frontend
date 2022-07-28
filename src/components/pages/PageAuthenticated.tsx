@@ -8,7 +8,10 @@ import axios from "axios";
 import config from "../../config";
 
 import { Pokemon } from "reluvate";
-import { parsePokemonFromAPI } from "../../utils/serializers";
+import {
+  parsePokemonFromAPIString,
+  parsePokemonsFromAPIString,
+} from "../../utils/serializers";
 
 export enum PaneOptions {
   myPokemon = "My Pokemons",
@@ -22,11 +25,15 @@ const PanesAuthenticated = ({
   setPaneSelection,
   paneSelection,
   tried,
+  pokemonInventory,
   setTried,
   prize,
   setPrize,
   token,
+  setPokemonInventory,
 }: {
+  pokemonInventory: Pokemon[];
+  setPokemonInventory: React.Dispatch<React.SetStateAction<Pokemon[]>>;
   prize: Pokemon | null;
   setPrize: React.Dispatch<React.SetStateAction<Pokemon | null>>;
   tried: number | null;
@@ -43,7 +50,14 @@ const PanesAuthenticated = ({
           setPaneSelection={setPaneSelection}
         />
       </div>
-      {paneSelection === PaneOptions.myPokemon && <div>My Pokemons</div>}
+
+      {paneSelection === PaneOptions.myPokemon && (
+        <div>
+          {pokemonInventory.map((p) => (
+            <div>{p.id}</div>
+          ))}
+        </div>
+      )}
       {paneSelection === PaneOptions.pokedex && <div>Pokedex</div>}
       {paneSelection === PaneOptions.guessThatPokemon && (
         <PaneGuessThatPokemon
@@ -52,6 +66,7 @@ const PanesAuthenticated = ({
           setTried={setTried}
           token={token}
           tried={tried}
+          setPokemonInventory={setPokemonInventory}
         />
       )}
       {paneSelection === null && (
@@ -69,8 +84,11 @@ const PageAuthenticated = ({ token }: { token: string | null }) => {
   const [tried, setTried] = React.useState<number | null>(null);
 
   const [prize, setPrize] = React.useState<Pokemon | null>(null);
-
+  const [pokemonInventory, setPokemonInventory] = React.useState<Pokemon[]>([]);
   React.useEffect(() => {
+    if (token == null) {
+      return;
+    }
     (async () => {
       console.log("With token" + token);
 
@@ -84,15 +102,29 @@ const PageAuthenticated = ({ token }: { token: string | null }) => {
       console.log(response.data);
 
       const tried = response.data.tried;
-      const prize = parsePokemonFromAPI(response.data.prize);
+      const prize = parsePokemonFromAPIString(response.data.prize);
       setTried(tried);
-
       setPrize(prize);
     })();
-  }, [token]);
+    (async () => {
+      const response = await axios.get(config.paths.ownedPokemons, {
+        headers: {
+          Authorization: `JWT ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("My Pokemons");
+      const pokemons = parsePokemonsFromAPIString(response.data.pokemons);
+      setPokemonInventory((prev) => {
+        return [...prev, ...pokemons];
+      });
+    })();
+  }, []);
 
   return (
     <PanesAuthenticated
+      pokemonInventory={pokemonInventory}
       prize={prize}
       setPrize={setPrize}
       setTried={setTried}
@@ -100,6 +132,7 @@ const PageAuthenticated = ({ token }: { token: string | null }) => {
       token={token}
       paneSelection={paneSelection}
       setPaneSelection={setPaneSelection}
+      setPokemonInventory={setPokemonInventory}
     />
   );
 };
