@@ -193,6 +193,12 @@
   display: flex;
   width: fit-content;
 }
+
+.pane-description-guess{
+
+  font-style: italic;
+  font-weight: bold;
+}
 .pane-guess-that-pokemon{
 
 
@@ -200,3 +206,23 @@
   flex-direction: column;
   align-items: center;
 }
+
+.pane-guess-reward-notification-text{
+  color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pane-guess-reward-notification {
+    margin-top: 10px;
+    animation: fade 2s linear;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fade {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}
+

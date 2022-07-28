@@ -6,6 +6,8 @@ import config from "../../config";
 
 import { Pokemon } from "reluvate";
 
+import PokemonCard from "./PaneMyPokemon/PokemonCard";
+
 import { parsePokemonFromAPIString } from "../../utils/serializers";
 const PaneGuessThatPokemon = ({
   tried,
@@ -72,7 +74,7 @@ const PaneGuessThatPokemon = ({
             );
             return next;
           });
-        }, 3000);
+        }, 6000);
       }
     }
 
@@ -89,7 +91,7 @@ const PaneGuessThatPokemon = ({
   };
   return (
     <div className="pane-guess-that-pokemon">
-      <div className="pane-description">Guess That Pokemon</div>
+      <div className="pane-description pane-description-guess">Guess That Pokemon</div>
       <div>
         {" "}
         You've tried {tried} times. Guessing wrong for consecutively 3 times
@@ -118,11 +120,10 @@ const PaneGuessThatPokemon = ({
       >GUESS</Button>
       </div>
       {rewards.map((reward) => (
-        <div>
-          {" "}
-          {reward.id}
-          {reward.pokename}
-          {reward.trainer}
+        <div key={reward.id} className="pane-guess-reward-notification">
+          <div className={"pane-guess-reward-notification-text"}>You win a pokemon!!</div>
+
+          <PokemonCard pokemon={reward}/>
         </div>
       ))}
 
