@@ -8,6 +8,7 @@ import axios from "axios";
 import config from "../../config";
 
 import { Pokemon } from "reluvate";
+import {parsePokemonFromAPI} from "../../utils/serializers"
 
 export enum PaneOptions {
   myPokemon = "My Pokemons",
@@ -83,8 +84,11 @@ const PageAuthenticated = ({ token }: { token: string | null }) => {
       console.log(response.data);
 
       const tried = response.data.tried;
-
+      const prize = parsePokemonFromAPI(response.data.prize);
       setTried(tried);
+
+      setPrize(prize)
+
     })();
   }, [token]);
 

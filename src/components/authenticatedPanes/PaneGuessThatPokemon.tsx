@@ -6,20 +6,7 @@ import config from "../../config";
 
 import { Pokemon } from "reluvate";
 
-const parsePokemonFromAPI: (_pokemon: string) => Pokemon | null = (
-  _pokemon
-) => {
-  const pokemon = JSON.parse(_pokemon);
-
-  if (pokemon === null) {
-    return null;
-  }
-  return {
-    id: pokemon.id,
-    pokename: pokemon.pokedex.pokename,
-    trainer: pokemon.trainer?.username,
-  };
-};
+import {parsePokemonFromAPI} from "../../utils/serializers"
 const PaneGuessThatPokemon = ({
   tried,
   setTried,
