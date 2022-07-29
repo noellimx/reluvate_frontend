@@ -3,7 +3,7 @@
 
 # Requirement
 
-nodejs and npm
+nodejs and npm @ EC2 Ubuntu 22
 
-`npm run build`
+`sudo npm run build`
 `serve -s build -l 8080`
