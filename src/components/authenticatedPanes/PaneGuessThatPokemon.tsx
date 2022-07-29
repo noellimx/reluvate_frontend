@@ -9,6 +9,13 @@ import { Pokemon } from "reluvate";
 import PokemonCard from "./PaneMyPokemon/PokemonCard";
 
 import { parsePokemonFromAPIString } from "../../utils/serializers";
+
+const low = 1
+const high = 2
+const inGuessRange = (value: number):boolean => {
+  return low <= value && value <= high
+
+}
 const PaneGuessThatPokemon = ({
   tried,
   setTried,
@@ -25,7 +32,7 @@ const PaneGuessThatPokemon = ({
   prize: Pokemon | null;
   setPrize: React.Dispatch<React.SetStateAction<Pokemon | null>>;
 }) => {
-  const [guessValue, setGuessValue] = React.useState<number | null>(() => 0);
+  const [guessValue, setGuessValue] = React.useState<number | null>(() => low);
 
   const [rewards, setRewards] = React.useState<Pokemon[]>([]);
 
@@ -46,12 +53,8 @@ const PaneGuessThatPokemon = ({
         },
       }
     );
-    console.log("[SubmitGuess]");
-    console.log(response);
-    console.log(response.data);
 
     const responseJSON = response.data;
-    console.log(responseJSON);
 
     const tried = responseJSON.tried;
     const reply = responseJSON.reply;
@@ -108,7 +111,14 @@ const PaneGuessThatPokemon = ({
           type="number"
           size="small"
           value={guessValue}
-          onChange={(event) => setGuessValue(Number(event.target.value))}
+          onChange={(event) => {
+            const guess = Number(event.target.value)
+            if(inGuessRange(guess)){
+
+              setGuessValue(Number(event.target.value))
+            }
+
+          }}
           InputLabelProps={{
             shrink: true,
           }}
